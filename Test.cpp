@@ -1,5 +1,6 @@
 #include<iostream>
+#include"numberOperator.h"
 int main()
 {
-	std:: cout << rand();
+	std::cout<<numberOperator::numberMul("5", "999");
 }
