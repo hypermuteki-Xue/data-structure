@@ -1,5 +1,7 @@
 # vistual studio application
 *.sln
 *.vcxproj
-*.vcvxproj.filters
+*.vcxproj.filters
 *.vcxproj.user
+.vs/
+x64/
