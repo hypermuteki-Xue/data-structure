@@ -1,8 +1,19 @@
 #include"numberOperator.h"
 #include<string>
+#include<iostream>
 using std::string;
 using std::reverse;
 using std::max;
+using std::cout;
+using std::endl;
+bool operator >=(string a, string b)
+{
+	if (a.length() > b.length())return 1;
+	else if (a[0] != ' -' && b[0] == '-')return 1;
+	else if (a.length() == b.length() && a[0] > b[0])return 1;
+	else if (a == b) return 1;
+	else return 0;
+}
  string numberOperator::numberAdd(string numberOne, string numberTwo)
 { 
 	 string ans;
@@ -93,6 +104,7 @@ using std::max;
  }
  string numberOperator::numberSub(string numberOne, string numberTwo)
  {
+	 if (numberOne == numberTwo)return "0";
 	 if (numberTwo[0] == '-' && numberOne[0] == '-')//两个负数相加
 	 {
 		 string right(numberTwo, 1, numberTwo.length());
@@ -134,24 +146,81 @@ using std::max;
 			 ans += ((a - b) + '0');
 		 }
 	 }
-	/* if (numberOne[0] < numberTwo[0])
-	 {
-		 int a = numberOne[0] - '0';
-		 int b = numberTwo[0] - '0';
-		 ans += (10 + a - b) + '0';
-		 reverse(ans.begin(), ans.end());
-	 }
-	 else
-	 {
-		 int a = numberOne[0] - '0';
-		 int b = numberTwo[0] - '0';
-		 ans += ( a - b) + '0';
-		 reverse(ans.begin(), ans.end());
-	 }*/
 	 reverse(ans.begin(), ans.end());
-	 return ans;
+	 int i = 0;
+	 for (; i <= ans.length()-1;)//去除前导0
+	 {
+		 if (ans[i] == '0')i++;
+		 else break;
+	 }
+	 string _ans(ans, i, ans.length());
+	 return _ans;
  }
  string numberOperator::numberDiv(string numberOne, string numberTwo)
  {
-	 return "1";
+	 string ans="";
+	 if (numberOne == "0")return "0";
+	 if (numberTwo == "0") { std::cout << "error"; exit(0); }
+	 if (numberOne == numberTwo)return "1";
+	 if (numberOne.length() < numberTwo.length())
+	 {
+		 ans += "0.";
+		 numberOne.append("0");
+		 while (numberOne.length() < numberTwo.length()) { ans.append("0"); numberOne.append("0"); }
+		 if (numberOne[0] < numberTwo[0])
+		 {
+			 ans.append("0");
+			 numberOne.append("0");
+		 }
+		 return ans + numberDiv(numberOne, numberTwo);
+	 }
+	 else if (numberOne.length() == numberTwo.length() && numberOne[0] < numberTwo[0])
+	 {
+		 ans += "0.";
+		 numberOne.append("0");
+		 return ans + numberDiv(numberOne, numberTwo);
+	 }
+	 else
+	 {
+		 int times = 0; 
+		 while (numberTwo.length() < (numberOne.length()-1)) { numberTwo.append("0"); times++; }
+		 for (int i = 0; i <= times; i++)
+		 {
+			 string _ans="";
+			 string _numberTwo(numberTwo, 0, numberTwo.length() - i);
+			 while (numberOne >= _numberTwo)
+			 {
+				 _ans = numberAdd(_ans, "1");
+				 numberOne = numberSub(numberOne, _numberTwo);
+
+			 }
+			 if (_ans == "")ans += "0";
+			  ans =  ans+_ans;
+		 }
+		 return ans;
+	 }
+
+ }
+ string numberOperator::numberPow(string numberOne, string numberTwo)
+ {
+	 string ans="1";
+	 if (numberTwo[0] == '-')//指数为负
+	 {
+		 string temp(numberTwo, 1, numberTwo.length());
+		 return numberDiv("1", numberPow(numberOne, temp));
+	 }
+	 else if(numberTwo == "0")return "1";//指数为0
+	 else
+	 {
+		 while (numberTwo != "0")
+		 {
+			 ans = numberMul(ans, numberOne);
+			 numberTwo = numberSub(numberTwo, "1");
+		 }
+	 }//指数为正
+	 return ans;
+ }
+ string numberOperator::numberMod(string numberOne, string numberTwo)
+ {
+	 return "2";
  }

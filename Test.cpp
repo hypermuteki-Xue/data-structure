@@ -1,10 +1,11 @@
 #include<iostream>
 #include"numberOperator.h"
 using namespace std;
+string ans;
+string numberOne="1";
+string numberTwo="2";
+numberOperator n;
 int main()
 {
-	string numberOne = "123";
-	string numberTwo = "456";
-	numberOperator n;
-	cout << n.numberMul("55", "-456");
+	cout << n.numberPow("155", "2");
 }

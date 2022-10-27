@@ -9,6 +9,8 @@ public:
 	static string numberSub(string numberOne, string numberTwo);
 	static string numberMul(string numberOne, string numberTwo);
 	static string numberDiv(string numberOne, string numberTwo);
+	static string numberPow(string numberOne, string numberTwo);
+	static string numberMod(string numberOne, string numberTwo);
 
 };
 #endif 
