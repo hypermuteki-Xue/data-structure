@@ -14,6 +14,13 @@ bool operator >=(string a, string b)
 	else if (a == b) return 1;
 	else return 0;
 }
+bool operator >(string a, string b)
+{
+	if (a.length() > b.length())return 1;
+	else if (a[0] != ' -' && b[0] == '-')return 1;
+	else if (a.length() == b.length() && a[0] > b[0])return 1;
+	else return 0;
+}
  string numberOperator::numberAdd(string numberOne, string numberTwo)
 { 
 	 string ans;
@@ -156,7 +163,7 @@ bool operator >=(string a, string b)
 	 string _ans(ans, i, ans.length());
 	 return _ans;
  }
- string numberOperator::numberDiv(string numberOne, string numberTwo)
+ string numberOperator::numberDiv(string numberOne, string numberTwo)//可以模拟竖式除法但是很复杂，一直减时间复杂度很高
  {
 	 string ans="";
 	 if (numberOne == "0")return "0";
@@ -220,7 +227,25 @@ bool operator >=(string a, string b)
 	 }//指数为正
 	 return ans;
  }
- string numberOperator::numberMod(string numberOne, string numberTwo)
+ string numberOperator::numberMod(string numberOne, string numberTwo)//可以直接调用函数但是时间复杂度太高
  {
-	 return "2";
+	 if (numberOne == "0")return "0";
+	 if (numberTwo == "0") { std::cout << "error"; exit(0); }
+	 if (numberTwo > numberOne)return numberOne;
+	 else if (numberTwo == numberOne)return "0";
+	 else
+	 {
+		 int times = 0;
+		 while (numberTwo.length() < (numberOne.length() - 1)) { numberTwo.append("0"); times++; }
+		 for (int i = 0; i <= times; i++)
+		 {
+			 string _numberTwo(numberTwo, 0, numberTwo.length() - i);
+			 while (numberOne >= _numberTwo)
+			 {
+				 numberOne = numberSub(numberOne, _numberTwo);
+			 }
+		 }
+		 return numberOne;
+	 }
+
  }
