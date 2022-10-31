@@ -5,8 +5,8 @@
 #include"binaryOperator.h"
 using namespace std;
 string ans;
-string numberOne="1111";
-string numberTwo="1111";
+string numberOne="20";
+string numberTwo="9";
 numberOperator n;
 int numberNode::code = 0;
 void show(int &a)
@@ -22,7 +22,7 @@ int main()
 	numberlist.setNext(b);
 	numberlist.show();*/
 	binaryOperator b;
-	cout << b.binAdd(numberOne, numberTwo);
+	cout<<n.numberDiv(numberOne, numberTwo);
 
 
 }
