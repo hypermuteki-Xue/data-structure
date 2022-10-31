@@ -2,10 +2,11 @@
 #include"numberOperator.h"
 #include"numberList.h"
 #include"numberNode.h"
+#include"binaryOperator.h"
 using namespace std;
 string ans;
-string numberOne="1";
-string numberTwo="2";
+string numberOne="1111";
+string numberTwo="1111";
 numberOperator n;
 int numberNode::code = 0;
 void show(int &a)
@@ -15,11 +16,13 @@ void show(int &a)
 }
 int main()
 {
-	numberNode a("123");
+	/*numberNode a("123");
 	numberList numberlist(a);
 	numberNode b("456");
 	numberlist.setNext(b);
-	numberlist.show();
+	numberlist.show();*/
+	binaryOperator b;
+	cout << b.binAdd(numberOne, numberTwo);
 
 
 }
