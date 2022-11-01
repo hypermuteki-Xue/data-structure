@@ -10,6 +10,7 @@ public:
 	static string binMul(string numberOne, string numberTwo);
 	static string binSub(string numberOne, string numberTwo);
 	static string binDiv(string numberOne, string numberTwo);
+	static string change(string number);
 };
 #endif // !_BINARYOPERATOR_H
 

@@ -11,6 +11,7 @@ public:
 	static string numberDiv(string numberOne, string numberTwo);
 	static string numberPow(string numberOne, string numberTwo);
 	static string numberMod(string numberOne, string numberTwo);
+	
 
 };
 #endif 

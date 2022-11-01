@@ -5,9 +5,10 @@
 #include"binaryOperator.h"
 using namespace std;
 string ans;
-string numberOne="20";
+string numberOne="110001";
 string numberTwo="9";
 numberOperator n;
+binaryOperator b;
 int numberNode::code = 0;
 void show(int &a)
 {
@@ -16,13 +17,6 @@ void show(int &a)
 }
 int main()
 {
-	/*numberNode a("123");
-	numberList numberlist(a);
-	numberNode b("456");
-	numberlist.setNext(b);
-	numberlist.show();*/
-	binaryOperator b;
-	cout<<n.numberDiv(numberOne, numberTwo);
-
-
+	string a = "10000101";
+	cout << b.binSub("1000001", "0101");
 }
