@@ -2,6 +2,10 @@
 #include<string>
 using std::string;
 using std::max;
+/*
+* 
+* 在进行运算时第一位为符号位
+*/
 string binaryOperator::binAdd(string numberOne, string numberTwo)
 {
 	string ans = "";
@@ -29,7 +33,7 @@ string binaryOperator::binAdd(string numberOne, string numberTwo)
 	}
 	if (flag == 1)ans += '1';
 	reverse(ans.begin(), ans.end());
-	return "0"+ans;
+	return ans;
 }
 string binaryOperator::change(string number)
 {
@@ -89,4 +93,51 @@ string binaryOperator::binSub(string numberOne, string numberTwo)//0表示
 		if (_ans == "")_ans = "0";
 		return "0"+_ans;
 	}
+}
+string binaryOperator::binMul(string numberOne, string numberTwo)
+{
+	string ans = "";
+	for (long long i = numberTwo.length() - 1,k=0; i >= 1; i--,k++)
+	{
+		if (numberTwo[i] == '1')
+		{
+			string s(k, '0');
+			ans = binAdd(ans, numberOne + s);
+		}
+	}
+	return ans;
+}
+string binaryOperator::binDiv(string NumberOne, string NumberTwo)
+{
+	string numberOne(NumberOne, 1, NumberOne.length());
+	string numberTwo(NumberTwo, 1, NumberTwo.length());
+	string ans = "";
+	if (numberOne == "00")return "0";
+	if (numberTwo == "00") {  exit(0); }
+	if (numberOne == numberTwo)return "1";
+	if (numberOne.length() < numberTwo.length()
+		|| numberOne.length() == numberTwo.length()
+		&& numberOne < numberTwo) return"0";
+	else
+	{
+		int times = 0;
+		while (numberTwo.length() < (numberOne.length() - 1)) { numberTwo='0'+numberTwo; times++; }
+		for (int i = 0; i <= times; i++)
+		{
+			string _ans = "";
+			string _numberTwo(numberTwo, i, numberTwo.length() );
+			while ((numberOne.length() > numberTwo.length())
+				|| (numberOne.length() == numberTwo.length()
+				&& numberOne > numberTwo)||(numberOne==numberTwo))
+			{
+				_ans = binAdd(_ans, "1");
+				numberOne = binSub(numberOne, _numberTwo);
+
+			}
+			if (_ans == "")ans += "0";
+			ans = ans + _ans;
+		}
+		return "0"+ans;
+	}
+
 }

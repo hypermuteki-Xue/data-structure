@@ -18,5 +18,5 @@ void show(int &a)
 int main()
 {
 	string a = "10000101";
-	cout << b.binSub("1000001", "0101");
+	cout << b.binDiv("01011", "0101");
 }
