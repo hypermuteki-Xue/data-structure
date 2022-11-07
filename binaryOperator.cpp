@@ -141,3 +141,10 @@ string binaryOperator::binDiv(string NumberOne, string NumberTwo)
 	}
 
 }
+string binaryOperator::binMod(string numberOne, string numberTwo)//2^256取余等于直接取最后256
+{
+	reverse(numberOne.begin(), numberOne.end());
+	string s(numberOne, 0, stoi(numberTwo));
+	reverse(s.begin(), s.end());
+	return s ;
+}

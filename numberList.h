@@ -13,6 +13,8 @@ public:
 	numberNode* last=NULL;
 	numberNode getfirst();
 	numberNode getLast();
+	string getOne(string code);
+	void setNext(numberNode* _numberNode);
 	void setNext(numberNode& _numberNode);
 	void show();
 };

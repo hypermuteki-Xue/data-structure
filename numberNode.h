@@ -12,6 +12,8 @@ public:
 	numberNode* next;
 	string to_String();
 	int static code;
+	friend class numberList;
+	string getValue();
 private:
 	string value;
 	string number;

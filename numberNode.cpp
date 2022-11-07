@@ -13,7 +13,7 @@ numberNode::numberNode(string value)
 {
 	this->value = value;
 	number = to_string(code++);
-	next == NULL;
+	next = NULL;
 }
 numberNode::numberNode(string value, numberNode* _next)
 {
@@ -25,4 +25,8 @@ string numberNode::to_String()
 {
 	string b = "number=" + number + " value=" + value + "\n";
 	return b;
+}
+string numberNode::getValue()
+{
+	return value;
 }

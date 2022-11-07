@@ -38,6 +38,27 @@ void numberList::setNext(numberNode& _numberNode)
 	else
 	{
 	 	last->next = &_numberNode;
-	last = last->next;
+	    last = last->next;
 	}
+}
+void numberList::setNext(numberNode* _numberNode)
+{
+	if (first == NULL) { first = _numberNode; }
+	if (last == NULL) { last = first; }
+	else
+	{
+		last->next = _numberNode;
+		last = last->next;
+	}
+}
+string numberList::getOne(string code)
+{
+	numberNode* temp = first;
+	while (temp != NULL)
+	{
+		if (temp->number == code)return temp->value;
+		temp = temp->next;
+	}
+	std::cout << "error" << std::endl;
+	exit(0);
 }
