@@ -1,14 +1,17 @@
 #include"binaryOperator.h"
 #include<string>
+#include<iostream>
 using std::string;
 using std::max;
 /*
 * 
 * 在进行运算时第一位为符号位
 */
-string binaryOperator::binAdd(string numberOne, string numberTwo)
+string binaryOperator::binAdd(string _numberOne, string _numberTwo)
 {
 	string ans = "";
+	string numberOne(_numberOne, 1, _numberOne.length());
+	string numberTwo(_numberTwo, 1, _numberTwo.length());
 	if (numberOne.length() > numberTwo.length())
 	{
 		long long length = numberOne.length() - numberTwo.length();
@@ -33,7 +36,7 @@ string binaryOperator::binAdd(string numberOne, string numberTwo)
 	}
 	if (flag == 1)ans += '1';
 	reverse(ans.begin(), ans.end());
-	return ans;
+	return "0"+ans;
 }
 string binaryOperator::change(string number)
 {
@@ -43,7 +46,7 @@ string binaryOperator::change(string number)
 		else if (number[i] == '1')number[i] = '0';
 		else { exit(0); }
 	}
-	return binAdd(number, "1");
+	return binAdd("0"+number, "01");
 }
 string binaryOperator::binSub(string numberOne, string numberTwo)//0表示
 {
@@ -51,9 +54,11 @@ string binaryOperator::binSub(string numberOne, string numberTwo)//0表示
 		|| numberOne.length() == numberTwo.length() 
 		&& numberOne < numberTwo)
 	{
-		string _numberOne(numberOne, 1, numberOne.length());
 		string _numberTwo(numberTwo, 1, numberTwo.length());
-		return "1"+binAdd(_numberOne, change(_numberTwo));
+		numberOne= binAdd(numberOne, change(_numberTwo));
+		string number(numberOne, 1, numberOne.length());
+		return "1" + number;
+		
 	}//小减大，加补码
 	else//大减小直接来
 	{

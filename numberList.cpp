@@ -33,8 +33,8 @@ void numberList::show()
 }
 void numberList::setNext(numberNode& _numberNode)
 {
-	if (first == NULL) { first = &_numberNode; }
-	if (last == NULL) { last = first; }
+	if (first == NULL) { first = &_numberNode;}
+	if (last == NULL) { last = first;}
 	else
 	{
 	 	last->next = &_numberNode;
