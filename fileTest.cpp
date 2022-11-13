@@ -34,7 +34,6 @@ int main()
 		numberNode tempnode1(b.binAdd(numberOne, numberTwo));
 		tempList2.setNext(tempnode1);
 		binfile.write(tempList2);
-
 	}
 	else if (number == "2")
 	{
@@ -101,6 +100,10 @@ int main()
 		numberNode tempnode1(b.binMod(numberOne, numberTwo));
 		tempList2.setNext(tempnode1);
 		binfile.write(tempList2);
+	}
+	else
+	{
+		cout << "ÄãÑ¡´íÁË" << endl;
 	}
 	numberNode* first = bin.first;
 	while (first != NULL)

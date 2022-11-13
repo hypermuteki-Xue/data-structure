@@ -1,4 +1,5 @@
 #include"binaryOperator.h"
+#include"numberOperator.h"
 #include<string>
 #include<iostream>
 using std::string;
@@ -70,7 +71,6 @@ string binaryOperator::binSub(string numberOne, string numberTwo)//0表示
 		numberOne = temp + numberOne;
 		string _temp(length - numberTwo.length(), '0');
 		numberTwo = _temp + numberTwo;
-		if (numberOne < numberTwo)return"-" + binSub(numberTwo, numberOne);
 		for (int i = length - 1; i >= 0; i--)
 		{
 			int a = numberOne[i] - '0';
@@ -101,9 +101,11 @@ string binaryOperator::binSub(string numberOne, string numberTwo)//0表示
 }
 string binaryOperator::binMul(string numberOne, string numberTwo)
 {
-	string ans = "";
+	string ans = "00";
+	std::cout << 1 << std::endl;
 	for (long long i = numberTwo.length() - 1,k=0; i >= 1; i--,k++)
 	{
+		std::cout << 2 << std::endl;
 		if (numberTwo[i] == '1')
 		{
 			string s(k, '0');
@@ -112,35 +114,33 @@ string binaryOperator::binMul(string numberOne, string numberTwo)
 	}
 	return ans;
 }
-string binaryOperator::binDiv(string NumberOne, string NumberTwo)
+string binaryOperator::binDiv(string numberOne, string numberTwo)
 {
-	string numberOne(NumberOne, 1, NumberOne.length());
-	string numberTwo(NumberTwo, 1, NumberTwo.length());
 	string ans = "";
-	if (numberOne == "00")return "0";
+	if (numberOne == "00")return "00";
 	if (numberTwo == "00") {  exit(0); }
-	if (numberOne == numberTwo)return "1";
+	if (numberOne == numberTwo)return "01";
 	if (numberOne.length() < numberTwo.length()
 		|| numberOne.length() == numberTwo.length()
-		&& numberOne < numberTwo) return"0";
+		&& numberOne < numberTwo) return"00";
 	else
 	{
+		std::cout << numberOne << std::endl;
+		std::cout << numberTwo << std::endl;
 		int times = 0;
-		while (numberTwo.length() < (numberOne.length() - 1)) { numberTwo='0'+numberTwo; times++; }
+		while (numberTwo.length() < (numberOne.length() - 1)) { numberTwo.append("0"); times++; }
 		for (int i = 0; i <= times; i++)
 		{
-			string _ans = "";
-			string _numberTwo(numberTwo, i, numberTwo.length() );
-			while ((numberOne.length() > numberTwo.length())
-				|| (numberOne.length() == numberTwo.length()
-				&& numberOne > numberTwo)||(numberOne==numberTwo))
+			numberOperator n;
+			string _ans = "00";
+			string _numberTwo(numberTwo, 0, numberTwo.length()-i );
+			while ((numberOne.length() > _numberTwo.length())|| (numberOne.length() == _numberTwo.length() && numberOne> _numberTwo)|| (numberOne == _numberTwo))
 			{
-				_ans = binAdd(_ans, "1");
-				numberOne = binSub(numberOne, _numberTwo);
-
+				_ans = binAdd(_ans, "01");
+                numberOne = binSub(numberOne, _numberTwo);
 			}
-			if (_ans == "")ans += "0";
-			ans = ans + _ans;
+			string __ans(_ans, 1, _ans.length());
+			ans = ans + __ans;
 		}
 		return "0"+ans;
 	}
